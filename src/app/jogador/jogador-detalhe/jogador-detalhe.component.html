@@ -1,0 +1,289 @@
+<div class="col-lg-13">
+  <div class="card hovercard">
+    <div class="card-background">
+      <img class="card-bkimg" alt="" [src]="jogador.urlImagem">
+    </div>
+    <div class="useravatar">
+      <img alt="" [src]="jogador.urlImagem">
+    </div>
+    <br>
+    <div class="card-info"> 
+		<small style="color:white">
+			{{jogador.nome}}
+	  	</small><br>
+      	"{{jogador.nick}}"
+    </div>
+  </div>
+</div>
+<div class="container">
+  	<div class="row">
+		<div class="col-md-8">
+			<div style="float:left;">
+				<h3>{{jogador.nick}}</h3>
+				<p>{{jogador.nome}} <img class="card-bkimg" alt="" [src]="jogador.urlImagemNacionalidade"/></p>
+				<p>{{jogador.dataNascimento}} ({{jogador.idade}} Anos)</p>
+			</div>
+			<div style="height:120px;">
+				<img style="float:right;" alt="" [src]="jogador.time.urlImagem" width="110px" height="110px"/>
+				<h3 style="float:right;">
+					{{jogador.time.nome}}<br>
+					<p style="float:right;">{{jogador.posicao}}</p>
+        		</h3>
+			</div>
+			<hr/>
+			<br>
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<b>KDA</b>
+							</div>
+							<div class="col-xs-11 text-center">
+								<div class="huge" style="color:orange;font-size : 18px;text-transform : uppercase;"><b>
+								{{jogador.kill}} / {{jogador.morte}} / {{jogador.assistencia}}</b></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>       
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<b>Partidas Jogadas</b>
+							</div>
+							<div class="col-xs-12 text-center">
+								<div class="huge" style="color:orange;font-size : 18px;text-transform : uppercase;"><b>
+								{{jogador.partidasJogadas}}</b></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<b>Partidas Ganhas</b>
+							</div>
+							<div class="col-xs-12 text-center">
+								<div class="huge" style="color:orange;font-size : 18px;text-transform : uppercase;"><b>
+								{{jogador.partidasGanhas}}</b></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>   
+			<div class="col-lg-3 col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-12 text-center">
+								<b>Farme</b>
+							</div>
+							<div class="col-xs-12 text-center">
+								<div class="huge" style="color:orange;font-size : 18px;text-transform : uppercase;"><b>
+								{{jogador.farme}}</b></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>   
+
+
+			<table *ngFor="let serie of jogador.series" class="table lista-clientes" width="100%">
+				<thead class="">
+					<tr>
+						<th [class]="serie.vencedor ? 'label-primary' : 'label-danger'" colspan="2">
+							<div class="text-center" style="">
+								<span>{{serie.time1.jogosGanhos}}</span> 
+								{{serie.time1.nick}} <small>vs</small> {{serie.time2.nick}} 
+								<span>{{serie.time2.jogosGanhos}}</span> 
+							</div>
+							<div class="text-center" style="">
+								Melhor de {{serie.numeroJogos}}
+							</div>
+						</th>
+						<th [class]="serie.vencedor ? 'info' : 'danger'" colspan="6">
+							{{serie.campeonato.titulo}} {{serie.titulo}}
+							<div style="float:right">{{serie.vencedor ? 'WIN' : 'LOSE'}}</div>
+							<br>{{serie.data}}
+							<div style="float:right">Patch: {{serie.patch}}</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let jogo of serie.jogos" [class]="serie.vencedor ? 'info' : 'danger'">
+						<th class="text-center">
+							<div style="margin-top:35%">
+								Jogo {{jogo.numeroJogo}}<br>{{jogo.vencedor ? 'WIN' : 'LOSE'}}<br>{{jogo.tempoJogo}}m
+							</div>
+						</th>
+						<th class="text-center;">
+							<div style="width:145px;margin-top:7%">
+								<img class="img-circle" src="fotos/LeeSin.png" alt="" width="75px" height="75px" style="float:left">
+								<div  style="float:left;margin-left:5px;">
+									<img class="" src="fotos/flash.png" alt="" width="30px" height="30px" style="float:left;margin-bottom:5px;margin-top:5px;"><br>
+									<img class="" src="fotos/fantasma.png" alt="" width="30px" height="30px" style="float:left;">
+								</div>
+								<div style="float:left;margin-left:10px;">
+									<img class="" src="fotos/trovao.png" alt="" width="25px" height="25px" style="margin-top:25px;">
+								</div>	
+							</div>										
+						</th>
+						<th class="text-center">
+							<div style="margin-top:35%;width:46px;">
+								{{jogo.kill}} / {{jogo.morte}} / {{jogo.assistencia}}<br>{{15.00}} KDA
+							</div>
+						</th>
+						<th class="text-center">
+							<div style="width:60px;margin-top:10%;">
+								{{jogo.farme}} CS<br>{{jogo.dpm}} DPM<br>{{jogo.participacao}}% K/P<br>{{jogo.ks}}% K/S
+							</div>
+						</th>
+						<th class="text-center">
+							<div style="width:160px;margin-top:2%;">
+								<div  style="float:left;margin-left:5px;">
+									<img class="" src="fotos/item1.png" alt="" width="35px" height="35px" style="float:left;margin-bottom:5px;margin-top:5px;"><br>
+									<img class="" src="fotos/item2.png" alt="" width="35px" height="35px" style="float:left;">	</div>
+								<div  style="float:left;margin-left:5px;">
+									<img class="" src="fotos/item3.png" alt="" width="35px" height="35px" style="float:left;margin-bottom:5px;margin-top:5px;"><br>
+									<img class="" src="fotos/item4.png" alt="" width="35px" height="35px" style="float:left;">	</div>
+								<div  style="float:left;margin-left:5px;">
+									<img class="" src="fotos/item5.png" alt="" width="35px" height="35px" style="float:left;margin-bottom:5px;margin-top:5px;"><br>
+									<img class="" src="fotos/item6.png" alt="" width="35px" height="35px" style="float:left;">	</div>		
+								<div style="float:left;margin-left:5px;">
+									<img class="" src="fotos/ward.png" alt="" width="35px" height="35px" style="margin-top:20px;"></div>						
+							</div>
+						</th>
+						<th class="text-center">
+							<div style="float:left;margin-left:5px;width:85px;">
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ashe.png" alt="" width="13px" height="13px" style="float:left;">JaspionJpg<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ashe.png" alt="" width="13px" height="13px" style="float:left;">JaspionJpg<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ashe.png" alt="" width="13px" height="13px" style="float:left;">JaspionJpg<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ashe.png" alt="" width="13px" height="13px" style="float:left;">JaspionJpg<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ashe.png" alt="" width="13px" height="13px" style="float:left;">JaspionJpg<br>
+							</div>
+						</th>
+						<th class="text-center">
+							<div style="float:left;margin-left:5px;width:85px;">
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ahri.png" alt="" width="13px" height="13px" style="float:left;">Red Yoda<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ahri.png" alt="" width="13px" height="13px" style="float:left;">Red Yoda<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ahri.png" alt="" width="13px" height="13px" style="float:left;">Red Yoda<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ahri.png" alt="" width="13px" height="13px" style="float:left;">Red Yoda<br>
+								<img style="float:left;margin-top:4px;" class="" src="fotos/ahri.png" alt="" width="13px" height="13px" style="float:left;">Red Yoda<br>
+							</div>
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-md-4">
+			<table class="table lista-clientes" width="100%">
+				<thead>
+					<tr>
+						<th>Top Champions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let topChampion of jogador.topChampions">
+						<th>
+							<img class="img-circle" [src]="topChampion.urlImagem" alt="" width="40px" height="40px" style="float:left">  
+							&nbsp; &nbsp;{{topChampion.nome}}<br>
+							&nbsp; &nbsp;{{topChampion.farme}} cs</th>
+						<th>
+							{{topChampion.kda}} KDA<br>
+							{{topChampion.kill}} / {{topChampion.morte}} /{{topChampion.assistencia}}
+						</th>
+						<th>
+							{{topChampion.taxaWin}}% de Win<br>
+							{{topChampion.jogosEscolha}} Jogados
+						</th>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table lista-clientes" width="100%">
+				<thead>
+					<tr>
+						<th>Troféus</th>
+						<th>Ano</th>
+						<th>Jogos</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<img class="img-circle" src="fotos/cblol.png" alt="" width="40px" height="40px" style="float:left">  
+							&nbsp; &nbsp;CBLOL<br>
+							&nbsp; &nbsp;1º Split</th>
+						<th>
+							2015
+						</th>
+						<th>
+							71% de Win<br>
+							7 Jogados
+						</th>
+					</tr>
+				</tbody>
+			</table>
+			<table class="table lista-clientes" width="100%">
+				<thead>
+					<tr>
+						<th>Times</th>
+						<th>Duração</th>
+						<th>Jogos</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>
+							<img class="img-circle" src="fotos/intz.png" alt="" width="40px" height="40px" style="float:left">  
+							&nbsp; &nbsp;INTZ<br>
+							&nbsp; &nbsp;</th>
+						<th>
+							2 Anos
+							</th>
+						<th>
+							71% de Win<br>
+							7 Jogados
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h3 class="page-header">Jogadores relacionados</h3>
+		</div>
+
+		<div class="col-lg-3 col-sm-4 text-center">
+			<img class="img-circle" src="fotos/robo.png" width="200px" height="200px" alt="">
+			<h3><small>LEONARDO</small> "ROBO" <small>SOUZA</small><br>
+			<span class="descricao">Top Laner - Red Canids</span></h3>
+		</div>
+
+		<div class="col-lg-3 col-sm-4 text-center">
+			<img class="img-circle" src="fotos/nappon.png" width="200px" height="200px" alt="">
+			<h3><small>CARLOS</small> "NAPPON" <small>HENRIQUE RÜCKER</small><br>
+			<span class="descricao">Caçador - Red Canids</span></h3>
+		</div>
+
+		<div class="col-lg-3 col-sm-4 text-center">
+			<img class="img-circle" src="fotos/brtt.jpg" width="200px" height="200px" alt="">
+			<h3><small>FELIPE</small> "BRTT" <small>GONÇALVES</small><br>
+			<span class="descricao">Atirador - Red Canids</span></h3>
+		</div>
+
+		<div class="col-lg-3 col-sm-4 text-center">
+			<img class="img-circle" src="fotos/yoda.png" width="200px" height="200px" alt="">
+			<h3><small>FELIPE</small> "YODA" <small>NORONHA</small><br>
+			<span class="descricao">Mid Laner - Red Canids</span></h3>
+		</div>
+	</div>
+</div>

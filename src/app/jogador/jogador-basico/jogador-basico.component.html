@@ -1,0 +1,27 @@
+<div class="col-lg-12" align="center">
+  <h1 class="page-header">Jogadores</h1>
+</div>
+
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" routerLink="basico" routerLinkActive="active"><a>Básico</a></li>
+  <li role="presentation" routerLink="estatistica" routerLinkActive="active"><a>Estátisticas</a></li>
+</ul>
+<br>
+
+<div class="col-md-7">			
+  <input class="col-md-12" type="text" id="txtBusca" placeholder="Buscar nesta lista" />
+   <ul id="ulItens">
+      <li>
+        <a [routerLink]="['/jogador/detalhe', 1]">
+          <div style="margin:3px;" class="text-center">
+            <img src="fotos/tockers.jpg" alt="" width="80px" height="80px"/><br>
+            Tockers
+          </div>
+        </a>
+      </li>
+    </ul>
+</div>
+
+<div class="col-md-5">
+  <router-outlet></router-outlet>
+</div>
